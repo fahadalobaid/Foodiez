@@ -14,3 +14,9 @@ class RegisterForm(forms.ModelForm):
         fields = ['username','password','first_name','last_name','email',]
 
         widgets = {"password" : forms.PasswordInput(),}
+
+
+class LoginForm (forms.Form):
+    username = forms.CharField(required=True)
+    password = forms.CharField(required=True, )
+    widgets={"password" : forms.PasswordInput(),}

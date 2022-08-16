@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from foodiezApp.views import register_user,Login
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("register/", register_user,name="register"),
+    path("login/", Login,name="login"),
 ]
