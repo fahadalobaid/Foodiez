@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{%block title%} Home Page {%endblock title%}
+
+
+{% block content %}
+<div class="container" >
+<div class ="row">
+
+
+        {% for recipe in recipes%}
+        <div class = "col-5">
+        <div class="card-deck">
+          <a href="{% url 'recipes' recipes_id=recipe.id %}">
+            <div class="card">
+              <img src="{{recipe.image.url}}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Recipes name: {{ recipe.name }}</h5>
+             
+                <p class="card-text"><small class="text-muted">Categorie : {{recipe.categories}}</small></p>
+              </div>
+            </div>
+          </a>
+          </div>
+          </div>
+          {% endfor %}
+
+          </div>
+
+          </div>
+           
+    
+    {%csrf_token%}
+{% endblock content %}

@@ -15,9 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from foodiezApp.views import register_user,Login
+from foodiezApp.views import register_user,login_user,recipes_details,recipe_list
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("register/", register_user,name="register"),
-    path("login/", Login,name="login"),
+    path("login/", login_user,name="login"),
+    path("home/", recipe_list,name="recipes"),
+    path("recipes/<int:recipes_id>/", recipes_details,name="recipes"),
+   
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

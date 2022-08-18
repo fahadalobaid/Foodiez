@@ -1,0 +1,33 @@
+
+  {% extends "base.html" %}
+  {%load static%}
+{% block title %}{{recipe.name}}{% endblock title %}
+<link rel="stylesheet" href="static/recipes.css">
+{% block content %}
+
+
+<div class = "card mb-3">
+
+<img class="img-thumbnail" src="{{recipes.image.url}}" />
+
+<div class="card-body">
+
+<h5 class="card-title">Recipes name: {{recipes.name}}</h5>
+
+<p class="card-text">Ingredients: {%for ingredient in recipes.ingredients.all %}
+    <td>{{ingredient.name}}<br></td>
+    {% endfor %}</p>
+    
+
+    Discription: {{recipes.discription}}
+
+    <p class="card-text"><small class="text-muted">Categorie : {{recipes.categories}}</small></p>
+
+
+
+</div>
+</div>
+
+
+{% endblock content %}
+

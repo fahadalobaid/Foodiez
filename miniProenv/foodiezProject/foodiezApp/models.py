@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -5,7 +6,7 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     user = models.OneToOneField( User,on_delete=models.CASCADE,)
   
-    image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100,)
+    image = models.ImageField( blank=True, null=True)
     firstname = models.CharField(max_length=20)
     lastname = models.CharField(max_length=20)
     Bio = models.TextField(max_length=180)
@@ -15,7 +16,7 @@ class Profile(models.Model):
         return self.user.username
 
 
-class Ingredients(models.Model):
+class Ingredient(models.Model):
     name = models.CharField(max_length=20)
 
 
@@ -25,7 +26,7 @@ class Ingredients(models.Model):
 
 
 
-class Categories(models.Model):
+class Categorie(models.Model):
     name = models.CharField(max_length=20)
 
 
@@ -33,12 +34,12 @@ class Categories(models.Model):
         return self.name
 
 
-class Recipes(models.Model):
+class Recipe(models.Model):
     name = models.CharField(max_length=150)
-    image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100,)
-    ingredients = models.ManyToManyField( Ingredients,related_name="ingredients")
+    image = models.ImageField(upload_to = 'foodiezApp/images', blank=True, null=True)
+    ingredients = models.ManyToManyField( Ingredient,related_name="ingredients")
     discription = models.TextField (default="Write your delicious recipe")
-    categories =  models.ForeignKey( Categories,on_delete=models.CASCADE,related_name="categories" )
+    categories =  models.ForeignKey( Categorie,on_delete=models.CASCADE,related_name="categories" )
 
     def __str__(self):
         return self.name

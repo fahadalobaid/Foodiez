@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Categories,Ingredients,Recipes,Profile
+from .models import Categorie,Ingredient,Recipe,Profile
 
 admin.site.register(Profile)
-admin.site.register(Categories)
-admin.site.register(Ingredients)
-admin.site.register(Recipes)
+admin.site.register(Categorie)
+admin.site.register(Ingredient)
+admin.site.register(Recipe)
 

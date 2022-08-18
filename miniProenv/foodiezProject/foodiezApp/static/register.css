@@ -1,0 +1,9 @@
+.image {
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    background-size:cover;
+    object-fit:fill;
+    background-image: url('https://as1.ftcdn.net/v2/jpg/04/99/37/56/1000_F_499375635_uDldPC5EXfaM1aYzF7dzgB8l5I2EMjdm.jpg');
+   }
+
