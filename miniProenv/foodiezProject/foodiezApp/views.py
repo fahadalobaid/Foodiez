@@ -91,14 +91,15 @@ def create_recipe(request):
 def update_recipe(request,recipe_id):
     if not request.user.is_authenticated:
         return redirect("login")
+
     recipe = Recipe.objects.get(id=recipe_id)
     form = RecipeForm(instance=recipe)
     if request.method == "POST":
-        form = RecipeForm(request.POST,instance=recipe)
+        print('its a post')
+        form = RecipeForm(request.POST, request.FILES,instance=recipe)
         if form.is_valid():
             form.save()
             return redirect('recipes')
-
     context = {
 
         "form":form,

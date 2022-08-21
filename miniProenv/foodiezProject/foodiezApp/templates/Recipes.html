@@ -22,11 +22,9 @@
              
                 <p class="card-text"><small class="text-muted">Categorie : {{recipe.categories}}</small></p>
                 <button><a href="{% url 'recipe_delete' recipe_id=recipe.id %}"class="btn btn-danger">delete </a></button>
-                <form action="{% url 'recipe_update_form' recipe_id=recipe.id %}" method="POST">
-                  {%csrf_token%}
-                  {{form}}
-                  <input type="submit" value="Update Recipe" class="btn btn-warning">
-                  </form>
+                <button><a href="{% url 'recipe_update_form' recipe_id=recipe.id %}"class="btn btn-warning">Update Recipe </a></button>
+
+
 
               </div>
             </div>
