@@ -1,14 +1,6 @@
-p{
-    color: black;
-}
-
-.image{
-
-
-height: 50px;
-width: 50px;
-align-items: center;
-
-    
-
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
 }

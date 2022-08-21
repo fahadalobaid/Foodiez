@@ -1,7 +1,7 @@
 from multiprocessing import context
 from django.shortcuts import render ,redirect
 from django.contrib.auth import login ,authenticate
-from .forms import RegisterForm,LoginForm
+from .forms import RegisterForm,LoginForm,RecipeForm,IngredientForm
 from .models import Recipe
 
 def register_user(request):
@@ -57,8 +57,74 @@ def recipes_details(request,recipes_id):
 
 
 def recipe_list(request):
-    recipes = Recipe.objects.all()
+    recipes= Recipe.objects.all()
     context={
         "recipes":recipes}
 
     return render(request,"Recipes.html",context)
+
+
+
+def create_recipe(request):
+    form = RecipeForm()
+    if request.method == "POST":
+        form = RecipeForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('recipes')
+
+    context = {
+
+        "form":form,
+    }
+    return render(request,"create_recipes.html",context)
+
+
+
+
+def update_recipe(request,recipe_id):
+    recipe = Recipe.objects.get(id=recipe_id)
+    form = RecipeForm(instance=recipe)
+    if request.method == "POST":
+        form = RecipeForm(request.POST,instance=recipe)
+        if form.is_valid():
+            form.save()
+            return redirect('recipes')
+
+    context = {
+
+        "form":form,
+        "recipe":recipe,
+    }
+
+    return render(request,"update_recipes.html",context)
+
+
+
+
+def delete(request,recipe_id):
+    recipe = Recipe.objects.get(id =recipe_id)
+    recipe.delete()
+    return redirect('recipes')
+
+
+
+def create_ingre(request):
+    form = IngredientForm()
+    if request.method == "POST":
+        form = IngredientForm(request.POST,)
+        if form.is_valid():
+            form.save()
+            return redirect('recipes')
+
+    context = {
+
+        "form":form,
+    }
+    return render(request,"create_ingredient.html",context)
+
+
+
+
+
+

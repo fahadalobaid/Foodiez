@@ -36,7 +36,7 @@ class Categorie(models.Model):
 
 class Recipe(models.Model):
     name = models.CharField(max_length=150)
-    image = models.ImageField(upload_to = 'foodiezApp/images', blank=True, null=True)
+    image = models.ImageField(upload_to = 'foodiezApp/images',blank=True, null=True)
     ingredients = models.ManyToManyField( Ingredient,related_name="ingredients")
     discription = models.TextField (default="Write your delicious recipe")
     categories =  models.ForeignKey( Categorie,on_delete=models.CASCADE,related_name="categories" )
