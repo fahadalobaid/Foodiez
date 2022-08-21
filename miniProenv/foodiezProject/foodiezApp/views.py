@@ -1,7 +1,7 @@
 from multiprocessing import context
 from django.shortcuts import render ,redirect
-from django.contrib.auth import login ,authenticate
-from .forms import RegisterForm,LoginForm,RecipeForm,IngredientForm
+from django.contrib.auth import login ,authenticate ,logout
+from .forms import RegisterForm,LoginForm,RecipeForm,IngredientForm,CategoriesForm
 from .models import Recipe
 
 def register_user(request):
@@ -42,6 +42,10 @@ def login_user(request):
 
     return render(request,'login.html',context)
 
+def logout_user(request):
+    logout(request)
+    return redirect ("login")
+
 
 
 def recipes_details(request,recipes_id):
@@ -66,6 +70,8 @@ def recipe_list(request):
 
 
 def create_recipe(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
     form = RecipeForm()
     if request.method == "POST":
         form = RecipeForm(request.POST,request.FILES)
@@ -83,6 +89,8 @@ def create_recipe(request):
 
 
 def update_recipe(request,recipe_id):
+    if not request.user.is_authenticated:
+        return redirect("login")
     recipe = Recipe.objects.get(id=recipe_id)
     form = RecipeForm(instance=recipe)
     if request.method == "POST":
@@ -103,6 +111,8 @@ def update_recipe(request,recipe_id):
 
 
 def delete(request,recipe_id):
+    if not request.user.is_authenticated:
+        return redirect("login")
     recipe = Recipe.objects.get(id =recipe_id)
     recipe.delete()
     return redirect('recipes')
@@ -110,6 +120,8 @@ def delete(request,recipe_id):
 
 
 def create_ingre(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
     form = IngredientForm()
     if request.method == "POST":
         form = IngredientForm(request.POST,)
@@ -122,6 +134,24 @@ def create_ingre(request):
         "form":form,
     }
     return render(request,"create_ingredient.html",context)
+
+
+
+def create_Categorie(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
+    form = CategoriesForm()
+    if request.method == "POST":
+        form = CategoriesForm(request.POST,)
+        if form.is_valid():
+            form.save()
+            return redirect('recipes')
+
+    context = {
+
+        "form":form,
+    }
+    return render(request,"create_categories.html",context)
 
 
 

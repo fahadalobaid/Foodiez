@@ -2,10 +2,10 @@
 {% load bootstrap4 %}
 {% bootstrap_css %}
 {% load static %}
-{% block title %} Create Ingredients {% endblock title %}
+{% block title %} Create Categories {% endblock title %}
 
 {% block content %} 
-<form action="{% url 'ingredients_form' %}" method="POST" >
+<form action="{% url 'Categories_form' %}" method="POST" >
 {%csrf_token%}
 {% bootstrap_form form %}
             <center>

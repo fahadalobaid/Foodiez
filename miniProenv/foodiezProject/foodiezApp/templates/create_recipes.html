@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
-
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% load static %}
 {% block title %} Create Recipes {% endblock title %}
 
 {% block content %} 
 <form action="{% url 'recipe_form' %}" method="POST" enctype="multipart/form-data">
 {%csrf_token%}
-{{form}}
-<input type="submit" value="Create Recipe">
+{% bootstrap_form form %}
+            <center>
+                <input class="btn btn-warning mt-4 fs-4 w-25" type="submit" value="Create">
+            </center>
+
 </form>
 {% endblock content %}

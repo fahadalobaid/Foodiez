@@ -15,17 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from foodiezApp.views import register_user,login_user,recipes_details,recipe_list,create_recipe,update_recipe,delete,create_ingre
+from foodiezApp.views import register_user,login_user,recipes_details,recipe_list,create_recipe,update_recipe,delete,create_ingre,create_Categorie,logout_user
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("register/", register_user,name="register"),
     path("login/", login_user,name="login"),
+    path("logout/", logout_user,name="logout"),
     path("home/", recipe_list,name="recipes"),
     path("recipes/<int:recipes_id>/", recipes_details,name="recipes"),
     path("create/",create_recipe ,name="recipe_form"),
     path("create-Ingredients/",create_ingre,name="ingredients_form"),
+    path("create-Categories/",create_Categorie,name="Categories_form"),
     path("update/<int:recipe_id>",update_recipe ,name="recipe_update_form"),
     path("delete/<int:recipe_id>",delete,name="recipe_delete"),
    

@@ -2,7 +2,7 @@ from dataclasses import field
 from pyexpat import model
 from django import forms
 from django.contrib.auth import get_user_model
-from .models import Recipe , Ingredient
+from .models import Recipe , Ingredient ,Categorie
 
 
 User = get_user_model()
@@ -37,6 +37,6 @@ class IngredientForm(forms.ModelForm):
 
 class CategoriesForm(forms.ModelForm):
     class Meta:
-        model = Ingredient
+        model = Categorie
         fields = ['name']
 
